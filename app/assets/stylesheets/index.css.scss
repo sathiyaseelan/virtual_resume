@@ -2,6 +2,11 @@
 $raleway-stack : 'Raleway', sans-serif;
 $sourcepro-stack: 'Source Sans Pro', sans-serif;
 /* ==== General section ====== */
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
     font-family: $raleway-stack;
     color: #129CF3;
@@ -65,13 +70,8 @@ section {
     z-index: 100;
     margin-top: 50px;
     margin-bottom: 50px;
-    margin-left: 150px;
-    margin-right: 150px;
     padding-top: 25px;
     padding-bottom: 25px;
-    padding-left: 30px;
-    padding-right: 30px;
-
         
     h2 {
         text-align: center;
