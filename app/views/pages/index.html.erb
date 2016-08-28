@@ -1,0 +1,241 @@
+<header id="home">
+    <!-- navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#loso-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">
+                <span>Sathiyaseelan</span>
+              </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="loso-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+
+                <li><a href="#home" class="nav-item">HOME</a></li>
+                <li><a href="#about" class="nav-item">ABOUT ME</a></li>
+                <li><a href="#experience" class="nav-item">EXPERIENCE</a></li>
+                <li><a href="#skills" class="nav-item">SKILLS</a></li>
+                <li><a href="#recommendations" class="nav-item">RECOMMENDATIONS</a></li>
+                <li><a href="#contact" class="nav-item">CONTACT ME</a></li>
+              </ul>
+
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-->
+        </nav>
+
+
+    <div class="overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8  headline">
+                    
+                    <h2><%= @user.brand_statement%></h2>
+                    <h5>Currently available for part time remote job</h5>
+                </div>
+                <!--
+                <div class="profile_image col-md-offset-1 col-md-3">
+                    <%= gravatar_for(@user, size: 400)%>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+</header>
+
+<!--Aboutme section -->
+<section id="about" class="summary-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>SUMMARY</h2>
+                <div class="summary">
+                    <p><%= sanitize(@user.summary) %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--Where I worked earlier section -->
+<section class="experience" id="experience">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>EXPERIENCE</h2>
+            </div>
+        </div>
+        <% @user.experiences.each do |exp| %>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-1">
+                    <h3><%= exp[:company] %><span><h6><%= exp[:from] + '-' + exp[:to] %></h6></span></h3>
+                    <p><%=exp[:summary] %></p>
+                </div>
+                <div class="col-md-1 logo">
+                    <%= image_tag exp[:logo_url] %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</section>
+
+<!--Ask me about section -->
+<section id="skills" class="skills-section">
+    <div class="container">
+        <h2>SKILLS</h2>
+        <div class="skills">
+            <% @user.skills.each_with_index do |skill,index| %>
+                <% if index.even? %>
+                    <div class="row">
+                    <div class="col-md-4 col-md-offset-1 skill-left">
+                        <h3><%= skill[:name] %></h3>
+                    </div>
+                <% end %>
+                    
+                <% if index.odd? %>
+                    <div class="col-md-4 col-md-offset-2 skill-right">
+                        <h3><%= skill[:name] %></h3>
+                    </div>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+</section>
+
+<!--Achievements section -->
+<section class="summary-section">
+    <div class="container">
+        <div class="row">
+                <h2>Certificates</h2>
+            <div class="certificates">
+                <% @user.certificates.each do |cert| %>
+                    <div class="name">
+                        <div class="col-md-6 col-md-offset-1">
+                            <%= link_to cert[:url], :target => 'blank' do %>
+                                <h3><%= cert[:name]%></h3>
+                            <% end %>
+                        </div>
+                        <div class="col-md-3 cert-org">
+                            <span><%=cert[:organization]%></span>    
+                        </div>
+                        
+                    </div>
+                    <div class="">
+                        <div class="col-md-11 col-md-offset-1">
+                            <p>Some data content for the cerfitcate description</p>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--And some numbers section -->
+<section class="counters-section">
+    <div class="overlay">
+        <div class="container">
+            <h2>Honourable mentions</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div><i class="fa fa-code"></i></div>
+                    <h2><span class="counter-item">200</span>+</h2>
+                    <p>Programs in Online Competitions</p>
+                </div>
+                <div class="col-md-4">
+                    <div><i class="fa fa-github"></i></div>
+                    <h2><span class="counter-item">15</span>+</h2>
+                    <p>Repositories</p>
+                </div>
+                <div class="col-md-4">
+                    <div><i class="fa fa-users"></i></div>
+                    <h2><span class="counter-item">100</span>+</h2>
+                    <p>Connections in Linkedin</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--What others think about me section -->
+<section id="recommendations" class="recommendation-section">
+    <div class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Recommendations</h2>
+                      
+                    <div id="recomm-carousel" class="carousel slide" data-ride="carousel">
+                      <ol class="carousel-indicators">
+                        <% @user.recommendations.each_with_index do |recomm,index| %>
+                        <li data-target="#recomm-carousel" data-slide-to="<%=index%>" class="<%= 'active' if index == 0 %>" ></li>
+                        <% end %>
+                      </ol>
+                      <div class="carousel-inner" role="listbox">
+                        <% @user.recommendations.each_with_index do |recomm,index| %>
+                        <div class="item text-center <%= ' active' if index == 0 %>">
+                          <img src="<%=recomm[:img_url]%>" class="center-block img-circle" alt="<%= recomm[:name]%>">
+                          <h5><%=recomm[:designation]%> at <span><%= recomm[:company]%></span></h5>
+                          <p><%= recomm[:statement] %></p>
+                        </div>
+                        <% end %>
+                      </div>
+                      
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Contact me section -->
+<section id="contact" class="summary-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Contact me</h2>
+                <div class="contact-us-form">
+          <div class="container">
+            <form role="form">
+              <div class="row">
+                <div class="col-md-4">
+                  <input type="text" class="form-control" id="name" placeholder="Name"/>
+                  <input type="email" class="form-control" id="email" placeholder="Email"/>
+                  <input type="text" class="form-control" id="subject" placeholder="Subject"/>
+                </div>
+                <div class="col-md-8">
+                  <textarea class="form-control" id="message" placeholder="Message" rows="25" cols="10"></textarea>
+                  <button class="btn btn-default btn-submit form-sumbit">SEND</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="social-icons">
+                <ul>
+                  <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                  <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+            </div>
+        </div>
+    </div>
+</section>
