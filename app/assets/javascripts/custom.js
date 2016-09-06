@@ -1,8 +1,7 @@
 $(document).ready(function(){
-   $('.counter-item').counterUp({
-    delay: 10,
-    time: 1000
-}); 
+   //$('.counter-item').counterUp({
+    
+    //}); 
 });
 
 //For smooth scrolling
