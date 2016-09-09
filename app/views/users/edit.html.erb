@@ -1,0 +1,4 @@
+<%= form_for @user, method: :put,:html => {  multipart: true} do |f| %>
+  <%= f.file_field :resume %>
+  <%= f.submit 'upload' %>
+<% end %>
