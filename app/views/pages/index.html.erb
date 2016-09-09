@@ -19,12 +19,13 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="loso-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right">
-
+                <li><%= link_to 'LinkedIn', '/auth/linkedin' %></li>
                 <li><a href="#home" class="nav-item">HOME</a></li>
                 <li><a href="#about" class="nav-item">ABOUT ME</a></li>
                 <li><a href="#experience" class="nav-item">EXPERIENCE</a></li>
                 <li><a href="#skills" class="nav-item">SKILLS</a></li>
                 <li><a href="#recommendations" class="nav-item">RECOMMENDATIONS</a></li>
+
                 <li><a href="#contact" class="nav-item">CONTACT ME</a></li>
               </ul>
 
@@ -37,7 +38,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8  headline">
-                    
+
                     <h2><%= @user.brand_statement%></h2>
                     <h5>Currently available for part time remote job</h5>
                 </div>
@@ -100,7 +101,7 @@
                         <h3><%= skill[:name] %></h3>
                     </div>
                 <% end %>
-                    
+
                 <% if index.odd? %>
                     <div class="col-md-4 col-md-offset-2 skill-right">
                         <h3><%= skill[:name] %></h3>
@@ -126,9 +127,9 @@
                             <% end %>
                         </div>
                         <div class="col-md-3 cert-org">
-                            <span><%=cert[:organization]%></span>    
+                            <span><%=cert[:organization]%></span>
                         </div>
-                        
+
                     </div>
                     <div class="">
                         <div class="col-md-11 col-md-offset-1">
@@ -174,7 +175,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2>Recommendations</h2>
-                      
+
                     <div id="recomm-carousel" class="carousel slide" data-ride="carousel">
                       <ol class="carousel-indicators">
                         <% @user.recommendations.each_with_index do |recomm,index| %>
@@ -190,9 +191,9 @@
                         </div>
                         <% end %>
                       </div>
-                      
+
                     </div>
-                    
+
                 </div>
             </div>
         </div>
